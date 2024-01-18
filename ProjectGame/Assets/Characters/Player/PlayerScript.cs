@@ -1,45 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public Rigidbody2D RB2d;
+    
     private Vector2 Movement;
-    private Vector2 playerSpeed;
-    private float playerAcceleration = 100f;
-    private float MaxSpeed = 10.0f;
+    private Vector2 MovDirection;
+    private float playerSpeed = 10.0f;
+    private float MaxSpeed = 20.0f;
+
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 3.0f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
+
+    [SerializeField] private Camera MainCamera;
+    [SerializeField] private Rigidbody2D RB2d;
+    [SerializeField] private TrailRenderer tr;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (isDashing) 
+        {
+            return;
+        }
 
         Movement.x = Input.GetAxisRaw("Horizontal");
         Movement.y = Input.GetAxisRaw("Vertical");
 
-        playerSpeed += Movement * (playerAcceleration * Time.deltaTime);
+        Movement = (Movement * playerSpeed);
 
-        playerSpeed.x = Mathf.Clamp(playerSpeed.x, -MaxSpeed, MaxSpeed);
-        playerSpeed.y = Mathf.Clamp(playerSpeed.y, -MaxSpeed, MaxSpeed);
+        Movement.x = Mathf.Clamp(Movement.x, -MaxSpeed, MaxSpeed);
+        Movement.y = Mathf.Clamp(Movement.y, -MaxSpeed, MaxSpeed);
 
-        if (playerSpeed.x > 0 | playerSpeed.x < 0)
+
+        RB2d.velocity = Movement;
+
+        if (Input.GetKeyDown(KeyCode.Space) && canDash) 
         {
-            playerSpeed.x *= 0.1f;
-        }
-        if (playerSpeed.y > 0 | playerSpeed.y < 0)
-        {
-            playerSpeed.y *= 0.1f;
+            StartCoroutine(Dash());
         }
 
-
-        print(playerSpeed);
-        RB2d.velocity = playerSpeed;
     }
+
+    private void FixedUpdate()
+    {
+        if (isDashing) 
+        {
+            return;
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        print("DASHHHHH");
+
+
+        canDash = false;
+        isDashing = true;
+        RB2d.velocity = Movement * dashingPower;
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
 }
