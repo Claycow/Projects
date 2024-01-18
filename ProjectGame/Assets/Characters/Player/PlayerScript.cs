@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     private float dashingCooldown = 1f;
 
 
-    [SerializeField] private Camera MainCamera;
+    
     [SerializeField] private Rigidbody2D RB2d;
     [SerializeField] private TrailRenderer tr;
 
