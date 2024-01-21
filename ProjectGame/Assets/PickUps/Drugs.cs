@@ -15,6 +15,8 @@ public class Drugs : MonoBehaviour
     void Start()
     {
         
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

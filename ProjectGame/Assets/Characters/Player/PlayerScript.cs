@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -16,12 +17,11 @@ public class PlayerScript : MonoBehaviour
     private bool dashQueue = false;
     private bool isShaking = false;
 
-
+    private float shakingAmp = 1f;
     private float dashingPower = 3.0f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     private float ShakeTime = 85f;
-
 
     [SerializeField] public CinemachineVirtualCamera vcam;
     [SerializeField] public CinemachineVirtualCamera shakeScreen;
@@ -60,7 +60,6 @@ public class PlayerScript : MonoBehaviour
         Movement.x = Mathf.Clamp(Movement.x, -MaxSpeed, MaxSpeed);
         Movement.y = Mathf.Clamp(Movement.y, -MaxSpeed, MaxSpeed);
 
-
         RB2d.velocity = Movement;
 
         if (Input.GetKeyDown(KeyCode.Space)) 
@@ -93,7 +92,6 @@ public class PlayerScript : MonoBehaviour
     {
         print("DASHHHHH");
 
-
         canDash = false;
         isDashing = true;
         RB2d.velocity = Movement * dashingPower;
@@ -113,10 +111,9 @@ public class PlayerScript : MonoBehaviour
         isShaking = true;
         shakeScreen.enabled = true;
         sickoMode.Play();
-
+        
         dashingCooldown = 0f;
         dashingPower *= 2f;
-
 
         yield return new WaitForSeconds(ShakeTime);
         vcam.enabled = true;
@@ -125,7 +122,6 @@ public class PlayerScript : MonoBehaviour
 
         dashingCooldown = 1f;
         dashingPower *= 3f;
-
 
     }
 

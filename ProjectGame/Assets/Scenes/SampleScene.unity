@@ -353,11 +353,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!82 &1100313092 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 663592618021356957, guid: 9a03ac30ebebcad48b6602fcd3eec840, type: 3}
-  m_PrefabInstance: {fileID: 7477636002003764367}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443989288
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,9 +836,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5387930056563081166, guid: dd1eb6074262f534ea06af3f5882e04e, type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387930056563081166, guid: dd1eb6074262f534ea06af3f5882e04e, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387930056563081166, guid: dd1eb6074262f534ea06af3f5882e04e, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 01c0ee61bcd349e42857a00ae19c253b, type: 3}
+    - target: {fileID: 5387930056563081166, guid: dd1eb6074262f534ea06af3f5882e04e, type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5387930056563081166, guid: dd1eb6074262f534ea06af3f5882e04e, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -955,10 +962,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1506211794}
     m_Modifications:
     - target: {fileID: -7884352344944578434, guid: 9a03ac30ebebcad48b6602fcd3eec840, type: 3}
-      propertyPath: pop
-      value: 
-      objectReference: {fileID: 1100313092}
-    - target: {fileID: -7884352344944578434, guid: 9a03ac30ebebcad48b6602fcd3eec840, type: 3}
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1660050324}
@@ -1032,20 +1035,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1660050327}
     - target: {fileID: 7844285653082895375, guid: 7cb11dae43b6efc4bb0e84d75709ae5b, type: 3}
-      propertyPath: m_Priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844285653082895375, guid: 7cb11dae43b6efc4bb0e84d75709ae5b, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7844285653082895375, guid: 7cb11dae43b6efc4bb0e84d75709ae5b, type: 3}
       propertyPath: m_Lens.ModeOverride
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7844285653082895375, guid: 7cb11dae43b6efc4bb0e84d75709ae5b, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7844285653082895376, guid: 7cb11dae43b6efc4bb0e84d75709ae5b, type: 3}
       propertyPath: m_RootOrder
